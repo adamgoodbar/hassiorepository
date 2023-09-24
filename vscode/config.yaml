@@ -17,7 +17,26 @@ arch:
 uart: true
 hassio_api: true
 hassio_role: manager
+services:
+- mysql:want
+- mqtt:want
 homeassistant_api: true
+host_network: true
+uart: true
+usb: true
+gpio: true
+audio: true
+apparmor: false
+host_dbus: true
+docker_api: true
+privileged:
+- NET_ADMIN
+- SYS_ADMIN
+- SYS_RAWIO
+- SYS_TIME
+- SYS_NICE
+devices:
+- /dev/mem
 map:
 - config:rw
 - ssl:rw
@@ -25,9 +44,7 @@ map:
 - media:rw
 - share:rw
 - backup:rw
-services:
-- mysql:want
-- mqtt:want
+journald: true
 options:
   packages: []
   init_commands: []
